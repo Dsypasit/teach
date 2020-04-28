@@ -77,7 +77,7 @@ def botMove(player,board):
         symbol = 'o'
     posible_pos=[x for x,letter in enumerate(board) if letter=='-']
     move = 0
-    for let in [player,symbol]:
+    for let in [symbol,player]:
         for i in posible_pos:
             copy_board = board.copy()
             copy_board[i] = let
@@ -118,6 +118,7 @@ def mainGame():
     while not isFull(board):
         if not win(board,bot):
             playerMove(player,board)
+            boardShow()
         else:
             print('You lose')
             break
@@ -127,13 +128,15 @@ def mainGame():
                 print('you win')
                 break
 
+        print('-'*7)
+
         if not win(board,player):
             addBoard(botMove(player,board),board,bot)
+            boardShow()
         else:
             print('You win')
             break
 
-        boardShow()
         print('-'*5)
 
     if isFull(board):
